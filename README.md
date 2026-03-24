@@ -9,7 +9,7 @@ We are planning to examine data from OpenSky Network API. We will look at flight
 
 Project Outline/Plan:
 
-- Interface Plan: 
+- Interface Plan: We plan to use Graphic User Interface (GUI) generated with Python’s Tkinter library
 
 - Data Collection and Storage Plan (written by Author #1):
 
