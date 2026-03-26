@@ -11,11 +11,13 @@ Project Outline/Plan:
 
 - Interface Plan: We plan to use Graphic User Interface (GUI) generated with Python’s Tkinter library. We plan on having some buttons and dropdowns to display different types of data visualizations as well as have some output screens to display the graphs and data.
 
-- Data Collection and Storage Plan (written by Author #1): We plan to use methods from the API usch as `get_arrivals_by_airport()`, `get_departures_by_airport()`, `get_flights_from_interval()`, and `get_states()`. We will then parse the JSON data from the API and store it in a csv spreadsheet. We will then extract the data that we want to examine such as the specific airports and arrival times that we want to look at and use them to visualize them. 
+- Data Collection and Storage Plan (written by Author #1): We plan to use methods from the API usch as `get_arrivals_by_airport()` and `get_departures_by_airport()` to get the total flights per airport and calculate the number of delays that occur, `get_flights_from_interval()` to get the total flights during a daily/monthly time period, and `get_states()` to get more details about the geographic positioning of an aircraft. We will parse the JSON data from the API and store it in a csv spreadsheet. We will then extract the data that we want to examine such as the specific airports and arrival times that we want to look at and use them to visualize them. 
 
 - Data Analysis and Visualization Plan (written by Author #2):
-  - Analysis: We plan to use Python's libraries such as pandas and numpy to analyze the flight data. Using `get_arrivals_by_ariport()`, we will calculate total flights per airport. Additionally, `get_departures_by_airport()`, `get_flights_from_interval()`, will help us determine the number of departures and arrivals per day / month as well as any delays in flights that occur.
   - Visualization: We plan on using libraries such as matplotlib and seaborn for visualizing the data.
     - Bar charts to compare the number of flights across airports and months.
     - Line graphs to show trends in arrivals and departures.
     - Map visualizations to show real time positions of aircraft.
+  - Analysis: We plan to use Python's libraries such as pandas and numpy to analyze the flight data. 
+    - Using the graphs that we visualized, we plan to identify spikes on line graph trendlines or longer bars on a bar graph. This would indicate more flights occuring, and a less optimal time for travelling.
+
