@@ -23,13 +23,15 @@ Project Outline/Plan:
     - We will parse the JSON data from the API and store it in a CSV spreadsheet
     - We will then extract the data that we want to examine such as the specific airports and arrival times that we want to look at and use them to visualize them. 
 
-- Data Analysis and Visualization Plan:
-  - Analysis:
-    - We plan to use Python's libraries such as pandas, numpy, matplotlib, and seaborn to analyze the flight data. 
-    - Using the graphs that we visualized, we plan to identify spikes on line graph trendlines or longer bars on a bar graph. This would indicate more flights occuring, and a less optimal time for traveling.
+- Data Visualization and Analysis Plan:
   - Visualization:
     - Bar charts to compare the number of flights across airports and months.
     - Line graphs to show trends in arrivals and departures.
     - Map visualizations to show real time positions of aircraft.
+  - Analysis:
+    - We plan to use Python's libraries such as pandas, numpy, matplotlib, and seaborn to analyze the flight data.
+    - Using the numerical data, we will find patterns and trends that could give us insight into flights.
+    - Using the graphs that we visualized, we plan to identify spikes on line graph trendlines or longer bars on a bar graph. This would indicate more flights occuring, and a less optimal time for traveling.
+  
   
 
