@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib
+matplotlib.use("Agg") # prevents matplotlib from opening GUI window and instead just saves graph to a file
 import matplotlib.pyplot as plt
 
 def load_data():

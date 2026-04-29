@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div>
+            <h1>Analyze Flights for a Selected Day</h1>
+
+            <form action="/selected-day" method="POST">
+                <label for="date">Choose a date:</label>
+                <select id="date" name="date">
+                    <option value="" disabled selected>Select Date</option>
+                    {% for d in dates %}
+                        <option value="{{ d }}">{{ d }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Generate Graph</button>
+            </form>
+            {% if show_graph %}
+                <img src="{{ url_for('static', filename='selected_day_plot.png') }}", alt="Flights by Selected Day">
+            {% endif %}
+            <a href="{{ url_for('home') }}">
+                <button>Home</button>
+            </a>
+        </div>
+    </body>
+</html>
