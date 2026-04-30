@@ -18,7 +18,14 @@
                 <button type="submit">Generate Graph</button>
             </form>
             {% if show_graph %}
-                <img src="{{ url_for('static', filename='selected_day_plot.png') }}", alt="Flights by Selected Day">
+                <img src="{{ url_for('static', filename='selected_day_plot.png') }}" alt="Flights by Selected Day">
+            {% endif %}
+            {% if stats %}
+                <div>
+                    <p>Total Flights: {{ stats['total_flights'] }}</p>
+                    <p>Best Time to Travel: {{ stats['best_hour'] }}:00</p>
+                    <p>Worst Time to Travel: {{ stats['worst_hour'] }}:00</p>
+                </div>
             {% endif %}
             <a href="{{ url_for('home') }}">
                 <button>Home</button>

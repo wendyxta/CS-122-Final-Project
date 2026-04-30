@@ -143,4 +143,23 @@ def analyze_hourly(df):
     
     return min_hr, min_val, max_hr, max_val
 
+def analyze_selected_day(df, selected_date):
+    # convert selected date (string input) into proper date object
+    selected_date = pd.to_datetime(selected_date).date()
+
+    # filter dataset to only include rows from selected date
+    day_data = df[df["date"] == selected_date]
+
+    if day_data.empty:
+        return None
+
+    # group filtered data by hour and add up all flight counts for that hour
+    hourly = day_data.groupby("hour")["flight counts"].sum()
+
+    return {
+        "best_hour": hourly.idxmin(),
+        "worst_hour": hourly.idxmax(),
+        "total_flights": hourly.sum()
+    }
+
  
