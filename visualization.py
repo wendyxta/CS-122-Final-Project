@@ -19,7 +19,8 @@ def load_data():
 
 def plot_flights_per_day(df):
     # group data by date and add up all flight counts for that day
-    daily = df.groupby("date")["flight counts"].sum()
+    df["weekday"] = pd.to_datetime(df["date"]).dt.day_name()
+    daily = df.groupby("weekday")["flight counts"].sum()
 
     plt.figure(figsize=(8, 8))
 
@@ -29,7 +30,7 @@ def plot_flights_per_day(df):
     plt.title("Flights Per Day")
     plt.xlabel("Date")
     plt.ylabel("Number of Flights")
-    plt.xticks(rotation = 30)
+    plt.xticks(rotation=30)
 
     # label number of flights above each bar
     for bar in chart.patches:
@@ -60,6 +61,7 @@ def plot_flights_per_hour(df):
     plt.title("Total Flights by Hour")
     plt.xlabel("Hour of Day")
     plt.ylabel("Number of Flights")
+    plt.xticks(rotation=90)
 
     # label number of flights above each bar
     for bar in chart.patches:
@@ -118,4 +120,27 @@ def plot_flights_for_selected_day(df, selected_date):
 
     # close the figure to free memory
     plt.close()
+
+def analyze_daily(df):
+    df["weekday"] = pd.to_datetime(df["date"]).dt.day_name()
+    daily = df.groupby("weekday")["flight counts"].sum()
+
+    min_day = daily.idxmin()
+    min_val = daily.min()
+    max_day = daily.idxmax()
+    max_val = daily.max()
+
+    return min_day, min_val, max_day, max_val
+
+def analyze_hourly(df):
+    hourly = df.groupby("hour")["flight counts"].sum()
+
+    min_hr = hourly.idxmin()
+    min_val = hourly.min()
+    max_hr = hourly.idxmax()
+    max_val = hourly.max()
+    print(min_hr, min_val, max_hr, max_val)
+    
+    return min_hr, min_val, max_hr, max_val
+
  

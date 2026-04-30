@@ -6,10 +6,30 @@
     <body>
         
         <h1>Analyze Flights By Day & Hour (Past 6-7 Days)</h1>
-        
+
         <div>
-            <img src="{{ url_for('static', filename='day_plot.png') }}", alt="Flights by Day", width=50%, height=50%>
-            <img src="{{ url_for('static', filename='hour_plot.png') }}", alt="Flights by Hour", width=50%, height=50%>
+            <img src="{{ url_for('static', filename='day_plot.png') }}", alt="Flights by Day", width=50%, height=50%, style="float:left">
+            <img src="{{ url_for('static', filename='hour_plot.png') }}", alt="Flights by Hour", width=50%, height=50%, style="float:right">
+        </div>
+
+        <div>
+            <form action="/day-analysis" method="POST">
+                <button type="submit">Analyze Days</button>
+            </form>
+            {% if min_day %}
+                <p>Best day of week to fly: {{ min_day }} with {{ min_day_val }} total flights </p>
+                <p>Worst day of week to fly: {{ max_day }} with {{ max_day_val }} total flights </p>
+            {% endif %}
+        </div>
+
+        <div>
+            <form action="/hour-analysis" method="POST">
+                <button>Analyze Hours</button>
+            </form>
+            {% if min_hr %}
+                <p>Best hour of day to fly: {{ min_hr }}:00 with {{ min_hr_val }} total flights </p>
+                <p>Worst hour of day to fly: {{ max_hr }}:00 with {{ max_hr_val }} total flights </p>
+            {% endif %}
         </div>
 
         <a href="{{ url_for('home') }}">

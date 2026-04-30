@@ -12,6 +12,20 @@ def home():
 def day_hour():
     return render_template("day_hour_page.html")
 
+@app.route("/day-analysis", methods=["GET", "POST"])
+def day_analysis():
+    df = load_data()
+    min_day, min_day_val, max_day, max_day_val = analyze_daily(df)
+
+    return render_template("day_hour_page.html", min_day=min_day, min_day_val=min_day_val, max_day=max_day, max_day_val=max_day_val)
+
+@app.route("/hour-analysis", methods=["GET", "POST"])
+def hour_analysis():
+    df = load_data()
+    min_hr, min_hr_val, max_hr, max_hr_val = analyze_hourly(df)
+
+    return render_template("day_hour_page.html", min_hr=min_hr, min_hr_val=min_hr_val, max_hr=max_hr, max_hr_val=max_hr_val)
+
 @app.route("/selected-day", methods=["GET", "POST"]) # GET -> open page, POST -> submit selected date
 def selected_day():
     df = load_data() # load data
