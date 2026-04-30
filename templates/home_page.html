@@ -6,8 +6,13 @@
     <body>
         <div>
             <h1>SFO Airport Flight Analysis</h1>
-            <p>This is an Airport analysis project where we analyze the number of flights that depart from the SFO aiport.</p>
-            <a href="{{ url_for('graphs') }}">
+            <p>This is an Airport analysis project where we analyze the number of flights that depart from the SFO airport.</p>
+
+            <form action="/collect" method="POST">
+                <button type="submit">Generate Flight Data</button>
+            </form>
+
+            <a href="{{ url_for('day_hour') }}">
                 <button>View Day & Time Analysis</button>
             </a>
             <a href="{{ url_for('selected_day') }}">

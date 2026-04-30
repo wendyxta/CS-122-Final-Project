@@ -8,9 +8,9 @@ app = Flask(__name__)
 def home():
     return render_template("home_page.html")
 
-@app.route("/graphs")
-def graphs():
-    return render_template("graphs_page.html")
+@app.route("/day-hour")
+def day_hour():
+    return render_template("day_hour_page.html")
 
 @app.route("/selected-day", methods=["GET", "POST"]) # GET -> open page, POST -> submit selected date
 def selected_day():

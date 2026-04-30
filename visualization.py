@@ -21,14 +21,24 @@ def plot_flights_per_day(df):
     # group data by date and add up all flight counts for that day
     daily = df.groupby("date")["flight counts"].sum()
 
-    plt.figure(figsize=(10, 4))
+    plt.figure(figsize=(8, 8))
 
     # plot the data as a bar chart
-    daily.plot(kind="bar")
+    chart = daily.plot(kind="bar")
 
     plt.title("Flights Per Day")
     plt.xlabel("Date")
     plt.ylabel("Number of Flights")
+    plt.xticks(rotation = 30)
+
+    # label number of flights above each bar
+    for bar in chart.patches:
+        chart.annotate(
+            str(bar.get_height()),
+            xy = (bar.get_x() + bar.get_width() / 2, bar.get_height()),
+            ha = "center",
+            va = "bottom"
+        )
 
     # save the figure as an image in the static folder for Flask
     plt.savefig("static/day_plot.png")
@@ -43,13 +53,22 @@ def plot_flights_per_hour(df):
     # ensure hours are ordered for plotting
     hourly = hourly.sort_index()
 
-    plt.figure(figsize=(10, 4))
+    plt.figure(figsize=(8, 8))
 
-    hourly.plot(kind="bar")
+    chart = hourly.plot(kind="bar")
 
     plt.title("Total Flights by Hour")
     plt.xlabel("Hour of Day")
     plt.ylabel("Number of Flights")
+
+    # label number of flights above each bar
+    for bar in chart.patches:
+        chart.annotate(
+            str(bar.get_height()),
+            xy = (bar.get_x() + bar.get_width() / 2, bar.get_height()),
+            ha = "center",
+            va = "bottom"
+        )
 
     # save the figure as an image in the static folder for Flask
     plt.savefig("static/hour_plot.png")
@@ -71,7 +90,7 @@ def plot_flights_for_selected_day(df, selected_date):
     # group filtered data by hour and add up all flight counts for that hour
     hourly = day_data.groupby("hour")["flight counts"].sum()
 
-    plt.figure(figsize=(10, 4))
+    plt.figure(figsize=(8, 8))
 
     plt.plot(hourly.index, hourly.values, marker="o")
 
@@ -83,6 +102,16 @@ def plot_flights_for_selected_day(df, selected_date):
     plt.xticks(range(24))
     
     plt.grid(linestyle='--', linewidth=0.5, alpha=0.4)
+
+    # label number of flights above each bar
+    for x, y in zip(hourly.index, hourly.values):
+        plt.annotate(
+            str(y),
+            xy = (x, y),
+            xytext = (-10, 5), # place text label -10 left, +5 units up
+            textcoords = "offset points",
+            ha = "center"
+        )
 
     # save the figure as an image in the static folder for Flask
     plt.savefig("static/selected_day_plot.png")
