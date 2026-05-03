@@ -1,35 +1,57 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="static/styles.css">
     </head>
     <body>
-        <div>
+        <nav class="navbar">
+            <ul class="nav-link-container">
+                <li class="nav-link">
+                    <a href="{{ url_for('home') }}" class="a-link">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="{{ url_for('day_hour') }}" class="a-link">
+                        View Day & Time Analysis
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="{{ url_for('selected_day') }}" class="a-link">
+                        View Analysis for Selected Day
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="select-day-container">
             <h1>Analyze Flights for a Selected Day</h1>
-
-            <form action="/selected-day" method="POST">
-                <label for="date">Choose a date:</label>
-                <select id="date" name="date">
-                    <option value="" disabled selected>Select Date</option>
-                    {% for d in dates %}
-                        <option value="{{ d }}">{{ d }}</option>
-                    {% endfor %}
-                </select>
-                <button type="submit">Generate Graph</button>
+            <form class="date-form" action="/selected-day" method="POST">
+                <div class="date-selection">
+                    <label for="date">Choose a date:</label>
+                    <select class="date-select" id="date" name="date">
+                        <option value="" disabled selected>Select Date</option>
+                        {% for d in dates %}
+                            <option value="{{ d }}">{{ d }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button class="btn" type="submit">Generate Graph</button>
             </form>
             {% if show_graph %}
-                <img src="{{ url_for('static', filename='selected_day_plot.png') }}" alt="Flights by Selected Day">
-            {% endif %}
-            {% if stats %}
-                <div>
-                    <p>Total Flights: {{ stats['total_flights'] }}</p>
-                    <p>Best Time to Travel: {{ stats['best_hour'] }}:00</p>
-                    <p>Worst Time to Travel: {{ stats['worst_hour'] }}:00</p>
+                <div class="graph-container">
+                    <img class="graph-img" src="{{ url_for('static', filename='selected_day_plot.png') }}" alt="Flights by Selected Day">
+                    {% if stats %}
+                    <div class="analysis">
+                        <h2>Analysis:</h2>
+                        <div class="analysis-info">
+                            <p>Total Flights: {{ stats['total_flights'] }}</p>
+                            <p>Best Time to Travel: {{ stats['best_hour'] }}:00</p>
+                            <p>Worst Time to Travel: {{ stats['worst_hour'] }}:00</p>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             {% endif %}
-            <a href="{{ url_for('home') }}">
-                <button>Home</button>
-            </a>
         </div>
     </body>
 </html>

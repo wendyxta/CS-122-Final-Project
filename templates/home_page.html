@@ -4,20 +4,42 @@
         <link rel="stylesheet" href="static/styles.css">
     </head>
     <body>
-        <div>
-            <h1>SFO Airport Flight Analysis</h1>
-            <p>This is an Airport analysis project where we analyze the number of flights that depart from the SFO airport.</p>
-
-            <form action="/collect" method="POST">
-                <button type="submit">Generate Flight Data</button>
-            </form>
-
-            <a href="{{ url_for('day_hour') }}">
-                <button>View Day & Time Analysis</button>
-            </a>
-            <a href="{{ url_for('selected_day') }}">
-                <button>View Analysis for Selected Day</button>
-            </a>
+        <nav class="navbar">
+            <ul class="nav-link-container">
+                <li class="nav-link">
+                    <a href="{{ url_for('home') }}" class="a-link">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="{{ url_for('day_hour') }}" class="a-link">
+                        View Day & Time Analysis
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="{{ url_for('selected_day') }}" class="a-link">
+                        View Analysis for Selected Day
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="home-container">
+            <div class="home">
+                <h1>SFO Departure Analytics</h1>
+                <p>SFO Departure Analytics is a web-based project that analyzes flight departure data from the San Francisco International Airport. Users can explore daily departure trends from the past 7 days, view the number of flights departing on selected dates, and identify the busiest and least active travel periods throughout the past week. Built with Python, Flask, Pandas, and Matplotlib, this project transforms raw aviation data into clear and simple visualizations and insights.</p>
+                <form action="/collect" method="POST">
+                    <button class="data-btn" type="submit">Generate Flight Data</button>
+                </form>
+                <div class="page-btns">
+                    <a href="{{ url_for('day_hour') }}">
+                        <button class="btn">View Day & Time Analysis</button>
+                    </a>
+                    <a href="{{ url_for('selected_day') }}">
+                        <button class="btn">View Analysis for Selected Day</button>
+                    </a>
+                </div> 
+            </div>
         </div>
+        
     </body>
 </html>
