@@ -36,12 +36,10 @@ def selected_day():
     show_graph = False
 
     if request.method == "POST": # if user submits form do actions below
-        selected = request.form["date"] # get form data
+        selected = request.form.get("date") # get form data
         if selected: # only run if user actually selects a date
             plot_flights_for_selected_day(df, selected)
             stats = analyze_selected_day(df, selected)
-            print("STATS:", stats)
-            print("TYPE:", type(stats))
             show_graph = True
             
     return render_template("selected_day_page.html", dates=dates, stats=stats, show_graph=show_graph)
@@ -52,7 +50,7 @@ def generate_data():
     collector.get_data()
     collector.create_csv()
 
-    return redirect(url_for("generate_data"))
+    return redirect(url_for("home"))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
