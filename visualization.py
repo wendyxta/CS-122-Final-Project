@@ -19,18 +19,23 @@ def load_data():
 
 def plot_flights_per_day(df):
     # group data by date and add up all flight counts for that day
-    df["weekday"] = pd.to_datetime(df["date"]).dt.day_name()
-    daily = df.groupby("weekday")["flight counts"].sum()
+    df["date"] = pd.to_datetime(df["date"])
+    daily = df.groupby("date")["flight counts"].sum()
 
-    plt.figure(figsize=(8, 8))
+    plt.figure(figsize=(10, 10))
 
     # plot the data as a bar chart
     chart = daily.plot(kind="bar")
 
-    plt.title("Flights Per Day")
-    plt.xlabel("Date")
+    axes_labels = []
+    for day in daily.index:
+        label = f"{day.strftime('%A')} \n {day.strftime('%m/%d/%y')}" #format to include weekday name and date 
+        axes_labels.append(label)
+
+    plt.title("Total Flights Per Day")
+    plt.xlabel("Day of Week")
     plt.ylabel("Number of Flights")
-    plt.xticks(rotation=30)
+    chart.set_xticklabels(axes_labels, rotation=30)
 
     # label number of flights above each bar
     for bar in chart.patches:
@@ -54,14 +59,19 @@ def plot_flights_per_hour(df):
     # ensure hours are ordered for plotting
     hourly = hourly.sort_index()
 
-    plt.figure(figsize=(8, 8))
+    plt.figure(figsize=(12, 8))
 
     chart = hourly.plot(kind="bar")
+
+    axes_labels = []
+    for hour in hourly.index:
+        label = f"{hour:02}:00" #format hour into a timestamp (H:00)
+        axes_labels.append(label)
 
     plt.title("Total Flights by Hour")
     plt.xlabel("Hour of Day")
     plt.ylabel("Number of Flights")
-    plt.xticks(rotation=90)
+    chart.set_xticklabels(axes_labels, rotation=45)
 
     # label number of flights above each bar
     for bar in chart.patches:
@@ -139,7 +149,6 @@ def analyze_hourly(df):
     min_val = hourly.min()
     max_hr = hourly.idxmax()
     max_val = hourly.max()
-    print(min_hr, min_val, max_hr, max_val)
     
     return min_hr, min_val, max_hr, max_val
 

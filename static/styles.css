@@ -92,7 +92,6 @@ body {
 }
 
 /* SELECTED DAY PAGE STYLES */
-
 .select-day-container {
     display: flex;
     flex-direction: column;
@@ -179,4 +178,36 @@ body {
 .analysis-info p {
     border-right: 3px solid #357bb0;
     padding-right: 30px;
+}
+
+/* DAY HOUR PAGE STYLES */
+.analysis-header {
+    text-align: center;
+    margin: 50px 10px 10px 10px
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20%;
+}
+
+.analysis-container {
+    margin: 20px 20px 20px 20px;
+    gap: 20%;
+    align-items: center;
+    text-align: center;
+}
+
+.analysis-graph-spacing {
+    margin-bottom: 20px;  
+}
+
+.best-text {
+    color: green;
+}
+
+.worst-text {
+    color: red;
 }

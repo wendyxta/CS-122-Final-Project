@@ -1,39 +1,54 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="/static/styles.css">
     </head>
     <body>
+        <nav class="navbar">
+            <ul class="nav-link-container">
+                <li class="nav-link">
+                    <a href="{{ url_for('home') }}" class="a-link">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="{{ url_for('day_hour') }}" class="a-link">
+                        View Day & Time Analysis
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="{{ url_for('selected_day') }}" class="a-link">
+                        View Analysis for Selected Day
+                    </a>
+                </li>
+            </ul>
+        </nav>
         
-        <h1>Analyze Flights By Day & Hour (Past 6-7 Days)</h1>
+        <h1 class="analysis-header">Analyze Flights By Day & Hour (Past 6 Days)</h1>
 
-        <div>
-            <img src="{{ url_for('static', filename='day_plot.png') }}", alt="Flights by Day", width=50%, height=50%, style="float:left">
-            <img src="{{ url_for('static', filename='hour_plot.png') }}", alt="Flights by Hour", width=50%, height=50%, style="float:right">
-        </div>
-
-        <div>
+        <div class="button-container">
             <form action="/day-analysis" method="POST">
-                <button type="submit">Analyze Days</button>
+                <button type="submit" class="btn">Analyze Days</button>
             </form>
-            {% if min_day %}
-                <p>Best day of week to fly: {{ min_day }} with {{ min_day_val }} total flights </p>
-                <p>Worst day of week to fly: {{ max_day }} with {{ max_day_val }} total flights </p>
-            {% endif %}
-        </div>
 
-        <div>
             <form action="/hour-analysis" method="POST">
-                <button>Analyze Hours</button>
+                <button type="submit" class="btn">Analyze Hours</button>
             </form>
+        </div>
+
+        <div class="analysis-container">
+            {% if min_day %}
+                <p>Best day of week to travel: <strong class="best-text">{{ min_day }}</strong> >> ({{ min_day_val }} total flights) </p>
+                <p class="analysis-graph-spacing">Worst day of week to travel: <strong class="worst-text">{{ max_day }}</strong> >> ({{ max_day_val }} total flights) </p>
+                <img src="{{ url_for('static', filename='day_plot.png') }}", alt="Flights by Day", width=70%, height=70%>
+            {% endif %}
+ 
             {% if min_hr %}
-                <p>Best hour of day to fly: {{ min_hr }}:00 with {{ min_hr_val }} total flights </p>
-                <p>Worst hour of day to fly: {{ max_hr }}:00 with {{ max_hr_val }} total flights </p>
+                <p>Best hour of day to fly: <strong class="best-text">{{ min_hr }}:00</strong> >> ({{ min_hr_val }} total flights) </p>
+                <p class="analysis-graph-spacing">Worst hour of day to fly: <strong class="worst-text">{{ max_hr }}:00</strong> >> ({{ max_hr_val }} total flights) </p>
+                <img src="{{ url_for('static', filename='hour_plot.png') }}", alt="Flights by Hour", width=70%, height=70%>
             {% endif %}
         </div>
 
-        <a href="{{ url_for('home') }}">
-            <button>Home</button>
-        </a>
     </body>
 </html>

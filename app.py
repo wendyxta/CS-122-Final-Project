@@ -15,6 +15,7 @@ def day_hour():
 @app.route("/day-analysis", methods=["GET", "POST"])
 def day_analysis():
     df = load_data()
+    plot_flights_per_day(df)
     min_day, min_day_val, max_day, max_day_val = analyze_daily(df)
 
     return render_template("day_hour_page.html", min_day=min_day, min_day_val=min_day_val, max_day=max_day, max_day_val=max_day_val)
@@ -22,6 +23,7 @@ def day_analysis():
 @app.route("/hour-analysis", methods=["GET", "POST"])
 def hour_analysis():
     df = load_data()
+    plot_flights_per_hour(df)
     min_hr, min_hr_val, max_hr, max_hr_val = analyze_hourly(df)
 
     return render_template("day_hour_page.html", min_hr=min_hr, min_hr_val=min_hr_val, max_hr=max_hr, max_hr_val=max_hr_val)
@@ -44,13 +46,13 @@ def selected_day():
             
     return render_template("selected_day_page.html", dates=dates, stats=stats, show_graph=show_graph)
     
-@app.route("/collect", methods=["POST"])
+@app.route("/collect", methods=["GET", "POST"])
 def generate_data():
     collector = DataCollector()
     collector.get_data()
     collector.create_csv()
 
-    return redirect(url_for("flight_data"))
+    return redirect(url_for("generate_data"))
 
 if __name__ == "__main__":
     app.run(debug=True)
