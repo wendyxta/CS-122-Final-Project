@@ -10,28 +10,31 @@ Authors:
 
 
 Project Description:
-We are planning to examine data from the OpenSky Network API (https://openskynetwork.github.io/opensky-api/python.html#). We will look at flight data from various airlines in various states and compare the volume of flights. We will also track departures and arrivals to see how often they are delayed. We will model this data using bar graphs to display different months and airports. This data will help use determine the most optimal time of year to travel by plane. 
+We used the OpenSky Network API (https://openskynetwork.github.io/opensky-api/python.html#) to collect flight departure data from the San Francisco International Airport (SFO) for 7 days. Our project analyzes flight departures by day and hour to find busy and less busy travel time. This can help us understand flight patterns and choose better travel times.   
 
 Project Outline/Plan:
 
-- Interface Plan: We plan to use Graphic User Interface (GUI) generated with Python’s Tkinter library. We plan on having some buttons and dropdowns to display different types of data visualizations as well as have some output screens to display the graphs and data.
+- Interface Plan: We built a website using **Flask** where users can click buttons to view different graphs and analyses to determine the most optimal time to fly. The website features three pages: a home page, a page for viewing day and time analysis, and a page where users can select a specific date to view hourly departure information for that day.
 
 - Data Collection and Storage Plan:
   - Collection:
-    - We plan to use methods from the API such as `get_arrivals_by_airport()` and `get_departures_by_airport()` to get the total flights per airport and calculate the number of delays that occur. We will also use `get_flights_from_interval()` to get the total flights during a daily/monthly time period, and `get_states()` to get more details about the geographic positioning of an aircraft
+    - We used `get_departures_by_airport()` from the OpenSky API to collect flight departure data from the SFO Airport.
+    - The API provides flight departure records which we processed to count the total number of per hour for each of the 7 days.
   - Storage Plan:
-    - We will parse the JSON data from the API and store it in a CSV spreadsheet
-    - We will then extract the data that we want to examine such as the specific airports and arrival times that we want to look at and use them to visualize them. 
+    - We parsed the JSON data returned from the API and stored it in a CSV file for easier access and analysis.
+    - The CSV file stores data such as the departure date, the hour of the departure, and the total number of flights departed from the SFO airport at that hour.
+    - We then extracted the departure day and departure time from the CSV file and used it to generate graphs and perform flight trend analysis to display on our website.
 
 - Data Visualization and Analysis Plan:
-  - Visualization:
-    - Bar charts to compare the number of flights across airports and months.
-    - Line graphs to show trends in arrivals and departures.
-    - Map visualizations to show real time positions of aircraft.
+  - Visualization: 
+    - Bar graphs to compare the total number of flights per day for a week
+    - Bar graphs to display the number of flights departing during different hours of the day
+    - Line graphs to show hourly departure trends for a user selected date to allow users to observe flight departure patterns throughout the day
   - Analysis:
-    - We plan to use Python's libraries such as pandas, numpy, matplotlib, and seaborn to analyze the flight data.
-    - Using the numerical data, we will find patterns and trends that could give us insight into flights.
-    - Using the graphs that we visualized, we plan to identify spikes on line graph trendlines or longer bars on a bar graph. This would indicate more flights occuring, and a less optimal time for traveling.
+    - We plan to use Python's libraries such as **Pandas** and **Matplotlib** to process, analyze, and visualize the flight data.
+    - By analyzing the numerical data, we identified patterns and trends in SFO flight departures across different days and times. 
+    - Using the graphs generated we determined the busiest day and busiest hour with the highest number of flights departing as well as the least busiest day and least busiest hour with least number of departures.
+    - This analysis helps users better understand peak travel periods and identify more optimal times to fly from the SFO airport.
   
   
 
