@@ -36,6 +36,6 @@ Project Outline/Plan:
     - Using the graphs generated we determined the busiest day and busiest hour with the highest number of flights departing as well as the least busiest day and least busiest hour with least number of departures.
     - This analysis helps users better understand peak travel periods and identify more optimal times to fly from the SFO airport.
   
-![Home Page](assets/home_page.png)
-![Day Time Page](assets/day_time_page.png)
+![Home Page](assets/home_page.png)  
+![Day Time Page](assets/day_time_page.png) 
 ![Day Time Page](assets/selected_day_page.png)
