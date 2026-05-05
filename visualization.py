@@ -25,25 +25,26 @@ def plot_flights_per_day(df):
     plt.figure(figsize=(10, 10))
 
     # plot the data as a bar chart
-    chart = daily.plot(kind="bar")
+    daily.plot(kind="bar")
 
     axes_labels = []
     for day in daily.index:
-        label = f"{day.strftime('%A')} \n {day.strftime('%m/%d/%y')}" #format to include weekday name and date 
+        label = f"{day.strftime('%A')} \n {day.strftime('%m/%d/%y')}" # format to include weekday name and date 
         axes_labels.append(label)
 
     plt.title("Total Flights Per Day")
     plt.xlabel("Day of Week")
     plt.ylabel("Number of Flights")
-    chart.set_xticklabels(axes_labels, rotation=30)
+    plt.xticks(range(len(axes_labels)), axes_labels, rotation=30)
 
     # label number of flights above each bar
-    for bar in chart.patches:
-        chart.annotate(
-            str(bar.get_height()),
-            xy = (bar.get_x() + bar.get_width() / 2, bar.get_height()),
-            ha = "center",
-            va = "bottom"
+    for i, value in enumerate(daily.values): # loop through each bar (i = pos, value = flight count)
+        plt.text(
+            i, # x pos
+            value, # y pos
+            str(value), # y value
+            ha = "center", # center text over bar
+            va = "bottom" # place text just above bar
         )
 
     # save the figure as an image in the static folder for Flask
@@ -61,23 +62,24 @@ def plot_flights_per_hour(df):
 
     plt.figure(figsize=(12, 8))
 
-    chart = hourly.plot(kind="bar")
+    hourly.plot(kind="bar")
 
     axes_labels = []
     for hour in hourly.index:
-        label = f"{hour:02}:00" #format hour into a timestamp (H:00)
+        label = f"{hour:02}:00" # format hour into a timestamp (H:00)
         axes_labels.append(label)
 
     plt.title("Total Flights by Hour")
     plt.xlabel("Hour of Day")
     plt.ylabel("Number of Flights")
-    chart.set_xticklabels(axes_labels, rotation=45)
+    plt.xticks(range(len(axes_labels)), axes_labels, rotation=45)
 
     # label number of flights above each bar
-    for bar in chart.patches:
-        chart.annotate(
-            str(bar.get_height()),
-            xy = (bar.get_x() + bar.get_width() / 2, bar.get_height()),
+    for i, value in enumerate(hourly.values):
+        plt.text(
+            i,
+            value,
+            str(value),
             ha = "center",
             va = "bottom"
         )
@@ -116,11 +118,11 @@ def plot_flights_for_selected_day(df, selected_date):
     plt.grid(linestyle='--', linewidth=0.5, alpha=0.4)
 
     # label number of flights above each bar
-    for x, y in zip(hourly.index, hourly.values):
+    for x, y in zip(hourly.index, hourly.values): # loop through pairs (x = hour, y = flight count)
         plt.annotate(
             str(y),
-            xy = (x, y),
-            xytext = (-10, 5), # place text label -10 left, +5 units up
+            xy = (x, y), # point on graph
+            xytext = (-10, 5), # place text label -10 left, +5 units up from (x, y)
             textcoords = "offset points",
             ha = "center"
         )
@@ -170,5 +172,3 @@ def analyze_selected_day(df, selected_date):
         "worst_hour": hourly.idxmax(),
         "total_flights": hourly.sum()
     }
-
- 
