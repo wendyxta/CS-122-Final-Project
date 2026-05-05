@@ -5,7 +5,7 @@ import time, csv
 class DataCollector:
     def __init__(self):
         try: # use credentials if they exist
-            tm = TokenManager.from_json_file("credentials (2).json")
+            tm = TokenManager.from_json_file("credentials (3).json")
             self.api = OpenSkyApi(token_manager=tm)
         except:
             self.api = OpenSkyApi()
@@ -25,7 +25,7 @@ class DataCollector:
         while t < self.cur_time: # keep looping until we reach "now"
             next_t = min(t + self.step, self.cur_time) # move forward step hrs but do not go past the current time
             data = self.api.get_departures_by_airport("KSFO", t, next_t)
-            # time.sleep(2) # go to sleep in between api calls to avoid the rate call per-minute limit
+            time.sleep(2) # go to sleep in between api calls to avoid the rate call per-minute limit
 
             time_label = datetime.fromtimestamp(t, tz=timezone.utc).strftime("%m-%d-%Y %H:%M")
             if data: # check if data was actually returned
@@ -43,7 +43,7 @@ class DataCollector:
     def create_csv(self):
         print("writing data to csv file...")
 
-        with open("SFO_flights.csv", "w", newline="") as f: # write data to SFO_flights.csv
+        with open("static/SFO_flights.csv", "w", newline="") as f: # write data to SFO_flights.csv
             writer = csv.writer(f)
 
             header = ["timestamp", "flight counts"] # write the header

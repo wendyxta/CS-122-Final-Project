@@ -12,6 +12,11 @@
                     </a>
                 </li>
                 <li class="nav-link">
+                    <a href="{{ url_for('data') }}" class="a-link">
+                        View Data
+                    </a>
+                </li>
+                <li class="nav-link">
                     <a href="{{ url_for('day_hour') }}" class="a-link">
                         View Day & Time Analysis
                     </a>
@@ -44,8 +49,8 @@
             {% endif %}
  
             {% if min_hr %}
-                <p>Best hour of day to fly: <strong class="best-text">{{ min_hr }}:00</strong> >> ({{ min_hr_val }} total flights) </p>
-                <p class="analysis-graph-spacing">Worst hour of day to fly: <strong class="worst-text">{{ max_hr }}:00</strong> >> ({{ max_hr_val }} total flights) </p>
+                <p>Best hour of day to travel: <strong class="best-text">{{ min_hr }}:00</strong> >> ({{ min_hr_val }} total flights) </p>
+                <p class="analysis-graph-spacing">Worst hour of day to travel: <strong class="worst-text">{{ max_hr }}:00</strong> >> ({{ max_hr_val }} total flights) </p>
                 <img src="{{ url_for('static', filename='hour_plot.png') }}", alt="Flights by Hour", width=50%, height=50%>
             {% endif %}
         </div>

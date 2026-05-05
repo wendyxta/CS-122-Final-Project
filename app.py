@@ -8,6 +8,12 @@ app = Flask(__name__)
 def home():
     return render_template("home_page.html")
 
+@app.route("/data")
+def data():
+    df = pd.read_csv("static/SFO_flights.csv")
+    data_table = df.to_html(classes="table-stripped", index=False)
+    return render_template("data_page.html", table=data_table)
+
 @app.route("/day-hour")
 def day_hour():
     return render_template("day_hour_page.html")

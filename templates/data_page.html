@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flight Data</title>
+        <link rel="stylesheet" href="static/styles.css">
+    </head>
+
+    <body>
+        <nav class="navbar">
+            <ul class="nav-link-container">
+                <li class="nav-link">
+                    <a href="{{ url_for('home') }}" class="a-link">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="{{ url_for('data') }}" class="a-link">
+                        View Data
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="{{ url_for('day_hour') }}" class="a-link">
+                        View Day & Time Analysis
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="{{ url_for('selected_day') }}" class="a-link">
+                        View Analysis for Selected Day
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <h1 class="analysis-header">Flight Count Per Hour (Past 7 days)</h1>
+
+        <div class="table">
+            {{ table | safe }}
+        </div>
+    </body>
+</html>

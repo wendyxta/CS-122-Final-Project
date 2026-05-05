@@ -14,7 +14,7 @@ We used the OpenSky Network API (https://openskynetwork.github.io/opensky-api/py
 
 Project Outline/Plan:
 
-- Interface Plan: We built a website using **Flask** where users can click buttons to view different graphs and analyses to determine the most optimal time and day to travel. The website features three pages: a home page, a page for viewing day and time analysis, and a page where users can select a specific date to view hourly departure information for that day.
+- Interface Plan: We built a website using **Flask** where users can click buttons to view different graphs and analyzes to determine the most optimal time and day to travel. The website features four pages: a home page, a page for viewing retrieved data, a page for viewing day and time analysis, and a page where users can select a specific date to view hourly departure information for that day.
 
 - Data Collection and Storage Plan:
   - Collection:

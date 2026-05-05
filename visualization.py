@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 def load_data():
     try:
-        df = pd.read_csv("SFO_flights.csv")
+        df = pd.read_csv("static/SFO_flights.csv")
         print("Using latest API data")
     except FileNotFoundError:
         df = pd.read_csv("backup_flights.csv")
