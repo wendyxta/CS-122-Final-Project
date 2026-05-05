@@ -25,14 +25,14 @@ class DataCollector:
         while t < self.cur_time: # keep looping until we reach "now"
             next_t = min(t + self.step, self.cur_time) # move forward step hrs but do not go past the current time
             data = self.api.get_departures_by_airport("KSFO", t, next_t)
-            # time.sleep(5) # go to sleep in between api calls to avoid the rate call per-minute limit
+            # time.sleep(2) # go to sleep in between api calls to avoid the rate call per-minute limit
 
             time_label = datetime.fromtimestamp(t, tz=timezone.utc).strftime("%m-%d-%Y %H:%M")
             if data: # check if data was actually returned
                 self.hourly_flights[time_label] = len(data)
             else: # otherwise number of flights = 0
                 self.hourly_flights[time_label] = 0
-                print("No data returned for", time_label)
+                # print("No data returned for", time_label)
                 # return
 
             t = next_t # move forward 

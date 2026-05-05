@@ -1,12 +1,12 @@
 # CS-122-Final-Project
 
-Project Title: Flight Analyzer
+Project Title: SFO Flight Analytics
 
 Authors: 
 |           Name          |       GitHub Handle      |            Project Task             |
 |-------------------------|--------------------------|-------------------------------------|
-| Wendy Ta                | @wendyxta                | Data Collection<br>Data Storage     |
-| Taanyaa Haridass Prasad | @taanyaaharidassprasad06 | Data Analysis<br>Data Visualization |
+| Wendy Ta                | @wendyxta                | Data Collection<br>Data Analysis    |
+| Taanyaa Haridass Prasad | @taanyaaharidassprasad06 | Data Visualization<br>Data Analysis |
 
 
 Project Description:
@@ -14,14 +14,14 @@ We used the OpenSky Network API (https://openskynetwork.github.io/opensky-api/py
 
 Project Outline/Plan:
 
-- Interface Plan: We built a website using **Flask** where users can click buttons to view different graphs and analyses to determine the most optimal time to fly. The website features three pages: a home page, a page for viewing day and time analysis, and a page where users can select a specific date to view hourly departure information for that day.
+- Interface Plan: We built a website using **Flask** where users can click buttons to view different graphs and analyses to determine the most optimal time and day to travel. The website features three pages: a home page, a page for viewing day and time analysis, and a page where users can select a specific date to view hourly departure information for that day.
 
 - Data Collection and Storage Plan:
   - Collection:
     - We used `get_departures_by_airport()` from the OpenSky API to collect flight departure data from the SFO Airport.
-    - The API provides flight departure records which we processed to count the total number of per hour for each of the 7 days.
+    - The API provides flight departure records which we processed to count the total number of flights per hour for each of the 7 days.
   - Storage Plan:
-    - We parsed the JSON data returned from the API and stored it in a CSV file for easier access and analysis.
+    - We parsed the data returned from the API and stored it in a CSV file for easier access and analysis.
     - The CSV file stores data such as the departure date, the hour of the departure, and the total number of flights departed from the SFO airport at that hour.
     - We then extracted the departure day and departure time from the CSV file and used it to generate graphs and perform flight trend analysis to display on our website.
 

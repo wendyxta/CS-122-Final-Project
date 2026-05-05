@@ -50,7 +50,7 @@ def generate_data():
     collector.get_data()
     collector.create_csv()
 
-    return redirect(url_for("home"))
+    return render_template("home_page.html")
 
 if __name__ == "__main__":
     app.run()

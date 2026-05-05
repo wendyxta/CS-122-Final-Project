@@ -23,10 +23,13 @@
                 </li>
             </ul>
         </nav>
+
+        <img src="static/sfo.png" alt="sfo img" class="sfo-img"/>
+
         <div class="home-container">
             <div class="home">
-                <h1>SFO Departure Analytics</h1>
-                <p>SFO Departure Analytics is a web-based project that analyzes flight departure data from the San Francisco International Airport. Users can explore daily departure trends from the past 7 days, view the number of flights departing on selected dates, and identify the busiest and least active travel periods throughout the past week. Built with Python, Flask, Pandas, and Matplotlib, this project transforms raw aviation data into clear and simple visualizations and insights.</p>
+                <h1>SFO Flight Analytics</h1>
+                <p>SFO Flight Analytics is a web-based project that analyzes flight departure data from the San Francisco International Airport. Users can explore daily departure trends from the past 7 days, view the number of flights departing on selected dates, and identify the busiest and least active travel periods throughout the past week. Built with Python, Flask, Pandas, and Matplotlib, this project transforms raw aviation data into clear and simple visualizations and insights.</p>
                 <form action="/collect" method="POST">
                     <button class="data-btn" type="submit">Generate Flight Data</button>
                 </form>
@@ -40,6 +43,10 @@
                 </div> 
             </div>
         </div>
+
+        <p class="doc">Data from Open Sky Network API: 
+            <a href="https://openskynetwork.github.io/opensky-api/python.html#">Documentation</a>
+        </p>
         
     </body>
 </html>
