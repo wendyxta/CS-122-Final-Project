@@ -37,5 +37,7 @@ Project Outline/Plan:
     - This analysis helps users better understand peak travel periods and identify more optimal times to fly from the SFO airport.
   
 ![Home Page](assets/home_page.png)  
-![Day Time Page](assets/day_time_page.png) 
-![Day Time Page](assets/selected_day_page.png)
+![Data Page](assets/data_page.png)  
+![Day Time Page](assets/day_time_page_daily.png)   
+![Day Time Page](assets/day_time_page_hourly.png)   
+![Selected Day Page](assets/selected_day_page.png)
